@@ -1,9 +1,12 @@
 # Iteration 1: continued pretraining on the evaluation corpora
 
-**Status (2026-11-24):** the plan, data preparation, training, evaluation and export scripts are ready, and data
+**Status (2026-11-26):** the plan, data preparation, training, evaluation and export scripts are ready, and data
 preparation and the training pipeline pass CPU smoke tests (`tests/`).
 
-- **3B:** the CPT run is done and its checkpoint is available. The reranker fine-tuning on it (section 6) is running.
+- **3B: done.** The reranker fine-tuned on the CPT checkpoint (section 6: run 1's recipe and training plan, final
+  checkpoint) scores DL 0.6384 and BEIR 0.5476 (nDCG@10 means; corpus-aware, see section 7), against run 1's 0.6414
+  and 0.5438: -0.003 and +0.004, both under the 0.005 the rules treat as noise. Before fine-tuning, the CPT model
+  scores CORE 0.4498 (base 0.4502, every example), MMLU 0.4899 (0.4927) and MMLU-Pro 0.1718 (0.1776).
 - **0.6B:** the CPT run can start now: `configs/train_0.6b.yaml`, from the released
   [`castorini/gaggle-nanochat-0.6b-pretrained-climbmix-20261121`](https://huggingface.co/castorini/gaggle-nanochat-0.6b-pretrained-climbmix-20261121), with
   [`castorini/gaggle-reranker-0.6b-20261122`](https://huggingface.co/castorini/gaggle-reranker-0.6b-20261122) as its reranker baseline.
